@@ -30,7 +30,9 @@ export default class Interactable extends Component {
 	}
 
 	setInteractions() {
-		if (this.props.draggable) this.interact.draggable(this.props.draggableOptions)
+		if (this.props.draggable) {
+			this.interact.draggable(this.props.draggableOptions)
+		}
 		if (this.props.resizable) this.interact.resizable(this.props.resizableOptions)
 		if (this.props.gesturable) this.interact.resizable(this.props.resizableOptions)
 	}
