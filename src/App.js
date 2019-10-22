@@ -1,31 +1,48 @@
-import React from 'react'
-import { render } from 'react-dom'
-import Interactive from 'interact.js'
+import React, {Component} from 'react'
+import styled from 'styled-components'
+import One from './components/One'
+import Two from './components/Two'
+import Three from './components/Three'
+import Four from './components/Four'
+import Five from './components/Five'
+import { ONE, TWO, THREE, FOUR, FIVE } from './constants'
+import start from './img/background.jpg'
 
-const draggableOptions = {
-     onmove: event => {
-        const target = event.target
-      // keep the dragged position in the data-x/data-y attributes
-      const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-      const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-      // translate the element
-      target.style.webkitTransform =
-      target.style.transform =
-        'translate(' + x + 'px, ' + y + 'px)'
-
-      // update the posiion attributes
-      target.setAttribute('data-x', x);
-      target.setAttribute('data-y', y);
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      viewState: FOUR,
+      background: ''
     }
+  }
+  render(){
+    const { viewState } = this.state
+    return (
+    <Wrap>
+    {viewState === 'ONE' ? <One 
+    next={() => this.setState({viewState: TWO})}/> : 
+    viewState === 'TWO' ? <Two 
+    next={() => this.setState({viewState: THREE})}
+    prev={() => this.setState({viewState: ONE})}
+    setBackground={(num) => this.setState({background: num})}/> : 
+    viewState === 'THREE' ? <Three 
+    next={() => this.setState({viewState: FOUR})}
+    prev={() => this.setState({viewState: TWO})}
+    setBackground={(num) => this.setState({background: num})}/> : 
+    viewState === 'FOUR' ? <Four 
+    background={this.state.background}/> :
+    viewState === 'FIVE' ? <Five 
+    background={this.state.background}/> : null }
+  </Wrap>)
+  }
 }
+export default App
 
-const example = () => (
-  <div>
-  <Interactive draggable draggableOptions={draggableOptions}>
-      <img src="https://pbs.twimg.com/profile_images/526421493731717120/INda0NaM.png" height={100} width={100}/>
-  </Interactive>
-  </div>
-)
 
-export default example
+const Wrap = styled.div`
+  background-image: url(${start});
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+`
