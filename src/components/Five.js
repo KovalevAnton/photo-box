@@ -74,6 +74,7 @@ class App extends Component {
   }
   render(){
     return (<Wrap>
+      <WrapWrapper>
       <WrapInteractiveties>
       <Interactive gesturable draggable resizable draggableOptions={draggableOptions} resizableOptions={resizableOptions}>
         <Mask onClick={(e) => zindex(e)} src={one}/>
@@ -91,17 +92,25 @@ class App extends Component {
         <Mask onClick={(e) => zindex(e)} src={two}/>
     </Interactive>
     </WrapInteractiveties>
-    <Demo id='demo' src={demo}/>
-    <button onClick={e => getPhoto()}>Click</button>
+    <Demo id='demo' src={this.props.photo}/>
+    </WrapWrapper>
+    {/* <button onClick={e => getPhoto()}>Click</button> */}
   </Wrap>)
   }
 }
 export default App
 
+const WrapWrapper = styled.div`
+ display: flex;
+height: 720px;
+`
 
 const Wrap = styled.div`
 display: flex;
-flex-direction: row;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+height: 100%;
 `
 const WrapInteractiveties = styled.div`
 background-color: #eee;
@@ -115,5 +124,5 @@ const Mask = styled.img`
   position: absolute;
 `
 const Demo = styled.img`
-width: 80%;
+height: 720px;
 `

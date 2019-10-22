@@ -13,11 +13,12 @@ class App extends Component {
     super(props)
     this.state = {
       viewState: FOUR,
-      background: ''
+      background: '',
+      photo: ''
     }
   }
   render(){
-    const { viewState } = this.state
+    const { viewState, photo } = this.state
     return (
     <Wrap>
     {viewState === 'ONE' ? <One 
@@ -31,8 +32,14 @@ class App extends Component {
     prev={() => this.setState({viewState: TWO})}
     setBackground={(num) => this.setState({background: num})}/> : 
     viewState === 'FOUR' ? <Four 
+    takePhoto={(pic) => this.setState({photo: pic})}
+    photo={photo}
+    deletePhoto={() => this.setState({photo: ''})}
+    next={() => this.setState({viewState: FIVE})}
+    prev={() => this.setState({viewState: THREE})}
     background={this.state.background}/> :
     viewState === 'FIVE' ? <Five 
+    photo={photo}
     background={this.state.background}/> : null }
   </Wrap>)
   }
