@@ -12,7 +12,7 @@
     "gphoto2": "^0.3.0",
     "html2canvas": "^1.0.0-rc.5",
     "interactjs": "^1.6.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "puppeteer": "^1.20.0",
     "react": "^16.10.2",
